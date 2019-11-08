@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "dist/cjs",
+    "sourceMap": true
+  },
+  "exclude": ["test/**/*"],
+  "extends": "./tsconfig.json"
+}
