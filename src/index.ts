@@ -1,2 +1,3 @@
-// tslint:disable-next-line: no-console
-console.log("Hello, world!");
+export function untruncateJson(json: string): string {
+  return json;
+}
