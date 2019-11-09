@@ -10,7 +10,11 @@ describe("untruncateJson", () => {
   });
 
   it("returns unmodified valid string with escaped quotes", () => {
-    expectUnchanged('"\\"Dr.\\" Leo Spaceman');
+    expectUnchanged('"\\"Dr.\\" Leo Spaceman"');
+  });
+
+  it("returns unmodified valid string with unicode escapes", () => {
+    expectUnchanged("ab\\u0065cd");
   });
 
   it("returns unmodified valid number", () => {
@@ -26,16 +30,16 @@ describe("untruncateJson", () => {
     expectUnchanged("null");
   });
 
-  it("returns unmodified valid object", () => {
-    expectUnchanged("{}");
-    expectUnchanged('{"foo": "bar"}');
-    expectUnchanged('{ "foo": 2 }');
-  });
-
   it("returns unmodified valid array", () => {
     expectUnchanged("[]");
     expectUnchanged('["a", "b", "c"]');
     expectUnchanged("[ 1, 2, 3 ]");
+  });
+
+  it("returns unmodified valid object", () => {
+    expectUnchanged("{}");
+    expectUnchanged('{"foo": "bar"}');
+    expectUnchanged('{ "foo": 2 }');
   });
 
   it("returns unmodified compound object", () => {
@@ -53,6 +57,18 @@ describe("untruncateJson", () => {
 
   it("adds a missing close quote", () => {
     expect(untruncateJson('"Hello')).toBe('"Hello"');
+  });
+
+  it('handles a string cut off after a "\\"', () => {
+    expect(untruncateJson('"Hello\\')).toBe('"Hello"');
+  });
+
+  it("handles a string cut off in the middle of a unicode escape", () => {
+    expect(untruncateJson('"ab\\u006')).toBe('"ab"');
+  });
+
+  it('replaces a number cut off at "-" with 0', () => {
+    expect(untruncateJson("-")).toBe("0");
   });
 
   it("adds a missing ]", () => {
