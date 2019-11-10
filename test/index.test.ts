@@ -1,4 +1,4 @@
-import { untruncateJson } from "../src";
+import untruncateJson from "../src";
 
 describe("untruncateJson", () => {
   it("returns unmodified valid string", () => {
@@ -13,7 +13,7 @@ describe("untruncateJson", () => {
     expectUnchanged('"\\"Dr.\\" Leo Spaceman"');
   });
 
-  it("returns unmodified valid string with unicode escapes", () => {
+  it("returns unmodified valid string with Unicode escapes", () => {
     expectUnchanged("ab\\u0065cd");
   });
 
@@ -63,7 +63,7 @@ describe("untruncateJson", () => {
     expect(untruncateJson('"Hello\\')).toBe('"Hello"');
   });
 
-  it("cuts off a partial unicode escape in a string", () => {
+  it("cuts off a partial Unicode escape in a string", () => {
     expect(untruncateJson('"ab\\u006')).toBe('"ab"');
   });
 

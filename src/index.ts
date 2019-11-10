@@ -26,7 +26,7 @@ function isWhitespace(char: string): boolean {
   return "\u0020\u000D\u000A\u0009".indexOf(char) >= 0;
 }
 
-export function untruncateJson(json: string): string {
+export default function untruncateJson(json: string): string {
   const contextStack: ContextType[] = [ContextType.TOP_LEVEL];
   let position = 0;
   let respawnPosition: number | undefined;
