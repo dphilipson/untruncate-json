@@ -2,6 +2,8 @@
 
 Fix up the end of a partial JSON string to create valid JSON.
 
+[![Build Status](https://travis-ci.com/dphilipson/untruncate-json.svg?branch=master)](https://travis-ci.com/dphilipson/untruncate-json)
+
 ## Motivation
 
 Have you ever been given a string that started off as valid JSON, but was then
