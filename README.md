@@ -53,7 +53,9 @@ untruncateJson('"abc\\'); // -> '"abc"'
 untruncateJson('{"x": 20, "y": '); // -> '{"x": 20}'
 ```
 
-Check the test cases for many more examples.
+Check the [test
+cases](https://github.com/dphilipson/untruncate-json/blob/master/test/index.test.ts)
+for many more examples.
 
 ## Guarantees
 
