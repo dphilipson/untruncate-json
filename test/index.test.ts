@@ -163,6 +163,32 @@ describe("untruncateJson", () => {
     expect(untruncateJson('{"hello": 1, "hello\\nworld')).toBe('{"hello": 1}');
   });
 
+  it("should produce valid JSON wherever the truncation occurs", () => {
+    const json = `{
+    "ab\\nc\\u0065d": ["ab\\nc\\u0065d", true, false, null, -12.3e-4],
+    "": { "12": "ab\\nc\\u0065d"}
+}  `;
+    for (let i = 1, { length } = json; i < length; i++) {
+      const partialJson = json.slice(0, i);
+      const fixedJson = untruncateJson(partialJson);
+      try {
+        JSON.parse(fixedJson);
+      } catch (e) {
+        fail(`Failed to produce valid JSON.
+
+Input:
+
+${partialJson}
+
+Output (invalid JSON):
+
+${fixedJson}
+
+`);
+      }
+    }
+  });
+
   function expectUnchanged(json: string) {
     expect(untruncateJson(json)).toBe(json);
   }
