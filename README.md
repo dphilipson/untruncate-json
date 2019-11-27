@@ -70,7 +70,7 @@ for many more examples.
   valid JSON and will fail if you try to parse it.
 - The output will always contain as many correct values as can be determined
   under the assumption that the input was indeed the prefix of valid JSON. For
-  example, if the input is cut off after a bare `t`, then `truncateJson` will
+  example, if the input is cut off after a bare `t`, then `untruncateJson` will
   assume that it was the start of the token `true`.
 - The last value appearing in the output JSON may have an incorrect value, for
   example if it is a truncated number or string. However, it will never have the
